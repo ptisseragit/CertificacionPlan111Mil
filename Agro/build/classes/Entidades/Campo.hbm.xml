@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09/12/2018 10:55:58 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entidades.Campo" table="campo" catalog="agro" optimistic-lock="version">
+        <id name="idCampo" type="java.lang.Integer">
+            <column name="idCampo" />
+            <generator class="identity" />
+        </id>
+        <property name="nombreCampo" type="string">
+            <column name="nombreCampo" length="250" not-null="true" />
+        </property>
+        <property name="superficieCampo" type="double">
+            <column name="superficieCampo" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="estadoCampo" type="string">
+            <column name="estadoCampo" length="23" not-null="true" />
+        </property>
+        <set name="lotes" table="lote" inverse="true" lazy="true" fetch="select" cascade="all">
+            <key>
+                <column name="idCampoLote" not-null="true" />
+            </key>
+            <one-to-many class="Entidades.Lote" />
+        </set>
+    </class>
+</hibernate-mapping>
